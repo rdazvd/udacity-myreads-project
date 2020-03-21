@@ -10,6 +10,8 @@ const BookList = ({ books }) => {
     <div className="list-books">
       <div className="list-books-title">
         <h1>MyReads</h1>
+      </div>
+      <div className="list-books-content">
         { booksByShelf.map((shelf, shelfTitle) =>
             <BookShelf shelfTitle={shelves[shelfTitle]} books={shelf} />) }
       </div>
