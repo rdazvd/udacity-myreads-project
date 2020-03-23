@@ -24,7 +24,7 @@ const ShelfChanger = ({ shelves }) => {
 };
 
 ShelfChanger.propTypes = {
-  shelves: PropType.array.isRequired
+  shelves: PropTypes.array.isRequired
 };
 
 export default ShelfChanger;
