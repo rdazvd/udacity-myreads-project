@@ -30,7 +30,8 @@ const BookList = ({ books, shelves }) => {
 };
 
 BookList.propTypes = {
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  shelves: PropTypes.array.isRequired
 };
 
 export default BookList;
