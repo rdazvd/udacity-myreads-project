@@ -10,7 +10,7 @@ const Book = ({ book }) => (
           style={{
             width: 128,
             height: 193,
-            backgroundImage: book.imageLinks.thumbnail
+            backgroundImage: `url(${book.imageLinks.thumbnail})`
           }}
         >
         </div>
