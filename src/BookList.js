@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 
 import BookShelf from './BookShelf';
 
-const BookList = ({ books }) => {
-  const shelves = [ ...new Set(books.map(book => book.shelf)) ];
+const BookList = ({ books, shelves }) => {
   const booksByShelf = shelves.map(shelf => books.filter(book => book.shelf === shelf));
 
   return (

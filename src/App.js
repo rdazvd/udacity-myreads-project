@@ -8,19 +8,24 @@ import SearchPage from './SearchPage';
 
 class BooksApp extends React.Component {
   state = {
-    books: []
+    books: [],
+    shelves: []
   };
 
   componentDidMount() {
     BooksAPI.getAll()
-      .then(books => this.setState({ books }));
+      .then(books => {
+        const shelves = [ ...new Set(books.map(book => book.shelf)) ];
+        this.setState({ books, shelves });
+      });
   }
 
   render() {
+    const { books, shelves } = this.state;
     return (
       <div className="app">
-        <Route exact path="/" render={() => <BookList books={this.state.books} />} />
-        <Route path="/search" render={ () => <SearchPage search={BooksAPI.search} /> } />
+        <Route exact path="/" render={() => <BookList books={books} shelves={shelves} />} />
+        <Route path="/search" render={ () => <SearchPage search={BooksAPI.search} shelves={shelves} /> } />
       </div>
     );
   }

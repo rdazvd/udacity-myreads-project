@@ -35,6 +35,8 @@ class SearchPage extends React.Component {
 
   render() {
     const { queryResult, error } = this.state;
+    const { shelves } = this.props;
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -52,7 +54,7 @@ class SearchPage extends React.Component {
         <div className="search-books-results">
           <ol className="books-grid">
             { queryResult.length > 0 && (
-              queryResult.map(book => <Book key={book.id} book={book} />) 
+              queryResult.map(book => <Book key={book.id} book={book} shelves={shelves} />) 
             ) }
             { error && (
               <p>Search did not return any books.</p>
