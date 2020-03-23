@@ -16,8 +16,8 @@ class SearchPage extends React.Component {
     
     this.setState({ query: event.target.value });
     
-    // run async search method if there is user input 
-    if (event.target.value)
+    // run search method if user input updated query state 
+    if (query)
       search(query.trim(), 20).then(queryResult => {
         queryResult.length > 0
           ? this.setState({ queryResult })
