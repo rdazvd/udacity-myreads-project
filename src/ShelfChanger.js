@@ -9,10 +9,12 @@ const makeShelfName = camelCaseStr =>
       str.charAt(0).toUpperCase() + str.substr(1).toLowerCase()
     );
 
-const ShelfChanger = ({ shelves }) => {
+const ShelfChanger = ({ book, shelves, onBookUpdate }) => {
+  const onUpdateShelf = event => onBookUpdate(book, event.target.value);
+  
   return (
     <div className="book-shelf-changer">
-      <select>
+      <select onChange={onUpdateShelf} defaultValue={book.shelf}>
         <option value="move" disabled>Move to...</option>
         { shelves.map(shelf => (
             <option key={shelf} value={shelf}>{ makeShelfName(shelf) }</option>

@@ -20,12 +20,28 @@ class BooksApp extends React.Component {
       });
   }
 
+  onBookUpdate = (targetBook, shelf) => {
+    BooksAPI.update(targetBook, shelf)
+      .then(() => {
+        // mutate the shelf value of the targetBook object
+        targetBook.shelf = shelf;
+        // update component state with mutated object
+        this.setState(prevState => ({
+          books: prevState.books
+            // filter out previous book from books array 
+            .filter(book => book.id !== targetBook.id)
+            // append mutated value to new books array
+            .concat(targetBook)
+        }));
+      });
+  };
+
   render() {
     const { books, shelves } = this.state;
     return (
       <div className="app">
-        <Route exact path="/" render={() => <BookList books={books} shelves={shelves} />} />
-        <Route path="/search" render={ () => <SearchPage search={BooksAPI.search} shelves={shelves} /> } />
+        <Route exact path="/" render={() => <BookList books={books} shelves={shelves} onBookUpdate={this.onBookUpdate} />} />
+        <Route path="/search" render={ () => <SearchPage search={BooksAPI.search} shelves={shelves} onBookUpdate={this.onBookUpdate} /> } />
       </div>
     );
   }
