@@ -19,7 +19,7 @@ class SearchPage extends React.Component {
     // run async search method if there is user input 
     if (event.target.value)
       search(query.trim(), 20).then(queryResult => {
-        queryResult.length
+        queryResult.length > 0
           ? this.setState({ queryResult })
           : this.setState({ queryResult: [], error: true })
       });
@@ -47,7 +47,7 @@ class SearchPage extends React.Component {
         <div className="search-books-results">
           <ol className="books-grid">
             { queryResult.length > 0 && (
-              queryResult.map(book => <Book book={book} />) 
+              queryResult.map(book => <Book key={book.id} book={book} />) 
             ) }
             { error && (
               <p>Search did not return any books.</p>
