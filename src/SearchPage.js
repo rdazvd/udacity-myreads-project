@@ -6,7 +6,8 @@ import Book from './Book';
 
 class SearchPage extends React.Component {
   static propTypes = {
-    search: PropTypes.func.isRequired
+    search: PropTypes.func.isRequired,
+    shelves: PropTypes.array.isRequired
   };
 
   state = {
