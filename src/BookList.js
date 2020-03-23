@@ -15,7 +15,7 @@ const BookList = ({ books }) => {
       </div>
       <div className="list-books-content">
         { booksByShelf.map((shelf, shelfTitle) =>
-            <BookShelf shelfTitle={shelves[shelfTitle]} books={shelf} />) }
+            <BookShelf key={shelves[shelfTitle]} shelfTitle={shelves[shelfTitle]} books={shelf} />) }
       </div>
       <div className="open-search">
         <Link to="/search" />
