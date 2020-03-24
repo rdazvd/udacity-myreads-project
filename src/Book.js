@@ -32,7 +32,11 @@ const Book = ({ book, shelves, onBookUpdate }) => {
           />
         </div>
         <div className="book-title">{bookTitle}</div>
-        <div className="book-authors">{book.authors}</div>
+        { /* check for existing author(s) and render if value is provided */
+          book.authors && (
+            book.authors.map(
+              (author, index) => <div key={index} className="book-authors">{ author }</div>
+          )) }
       </div>
     </li>
   );
