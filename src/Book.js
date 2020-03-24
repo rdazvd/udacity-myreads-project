@@ -8,7 +8,10 @@ const Book = ({ book, shelves, onBookUpdate }) => {
     book.imageLinks && book.imageLinks.thumbnail
       ? `url(${book.imageLinks.thumbnail})`
       : '#ccc';
-
+  
+  // add fallback value for missing title
+  const bookTitle = book.title || 'No title available';
+  
   return (
     <li>
       <div className="book">
@@ -28,7 +31,7 @@ const Book = ({ book, shelves, onBookUpdate }) => {
             onBookUpdate={onBookUpdate}
           />
         </div>
-        <div className="book-title">{book.title}</div>
+        <div className="book-title">{bookTitle}</div>
         <div className="book-authors">{book.authors}</div>
       </div>
     </li>
