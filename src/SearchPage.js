@@ -8,6 +8,7 @@ class SearchPage extends React.Component {
   static propTypes = {
     search: PropTypes.func.isRequired,
     shelves: PropTypes.array.isRequired,
+    shelfNames: PropTypes.array.isRequired,
     onBookUpdate: PropTypes.func.isRequired
   };
 
@@ -37,7 +38,7 @@ class SearchPage extends React.Component {
 
   render() {
     const { queryResult, error } = this.state;
-    const { shelves, onBookUpdate } = this.props;
+    const { shelves, shelfNames, onBookUpdate } = this.props;
 
     return (
       <div className="search-books">
@@ -56,7 +57,7 @@ class SearchPage extends React.Component {
         <div className="search-books-results">
           <ol className="books-grid">
             { queryResult.length > 0 && (
-              queryResult.map(book => <Book key={book.id} book={book} shelves={shelves} onBookUpdate={onBookUpdate} />) 
+              queryResult.map(book => <Book key={book.id} book={book} shelves={shelves} shelfNames={shelfNames} onBookUpdate={onBookUpdate} />) 
             ) }
             { error && (
               <p>Search did not return any books.</p>

@@ -9,14 +9,24 @@ import SearchPage from './SearchPage';
 class BooksApp extends React.Component {
   state = {
     books: [],
-    shelves: []
+    shelves: [],
+    shelfNames: []
   };
 
   componentDidMount() {
     BooksAPI.getAll()
       .then(books => {
         const shelves = [ ...new Set(books.map(book => book.shelf)) ];
-        this.setState({ books, shelves });
+        const shelfNames = shelves.map(shelf => 
+          shelf
+            .replace(/([a-z](?=[A-Z]))/g, '$1 ')
+            .replace(
+              /\w\S*/g, 
+              str => str.charAt(0).toUpperCase() + str.substr(1).toLowerCase()
+            )
+        );
+        
+        this.setState({ books, shelves, shelfNames });
       });
   }
 
@@ -36,12 +46,31 @@ class BooksApp extends React.Component {
       });
   };
 
+  // convert camel cased shelf name to multiple-word, title cased string 
+  makeShelfName = camelCaseStr => {
+    camelCaseStr
+      .replace(/([a-z](?=[A-Z]))/g, '$1 ')
+      .replace(/\w\S*/g, str =>
+        str.charAt(0).toUpperCase() + str.substr(1).toLowerCase()
+      );
+  };
+
   render() {
-    const { books, shelves } = this.state;
+    const { books, shelves, shelfNames } = this.state;
     return (
       <div className="app">
-        <Route exact path="/" render={() => <BookList books={books} shelves={shelves} onBookUpdate={this.onBookUpdate} />} />
-        <Route path="/search" render={ () => <SearchPage search={BooksAPI.search} shelves={shelves} onBookUpdate={this.onBookUpdate} /> } />
+        <Route 
+          exact path="/" 
+          render={ () => (
+            <BookList books={books} shelves={shelves} shelfNames={shelfNames} onBookUpdate={this.onBookUpdate} />
+          ) }
+        />
+        <Route 
+          path="/search" 
+          render={ () => (
+            <SearchPage search={BooksAPI.search} shelves={shelves} shelfNames={shelfNames} onBookUpdate={this.onBookUpdate} />
+          ) } 
+        />
       </div>
     );
   }

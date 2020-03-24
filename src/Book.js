@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ShelfChanger from './ShelfChanger';
 
-const Book = ({ book, shelves, onBookUpdate }) => {
+const Book = ({ book, shelves, shelfNames, onBookUpdate }) => {
   // add fallback value for missing cover
   const bookCoverValue = 
     book.imageLinks && book.imageLinks.thumbnail
@@ -28,6 +28,7 @@ const Book = ({ book, shelves, onBookUpdate }) => {
           <ShelfChanger 
             book={book}
             shelves={shelves}
+            shelfNames={shelfNames}
             onBookUpdate={onBookUpdate}
           />
         </div>
@@ -45,6 +46,7 @@ const Book = ({ book, shelves, onBookUpdate }) => {
 Book.propTypes = {
   book: PropTypes.object.isRequired,
   shelves: PropTypes.array.isRequired,
+  shelfNames: PropTypes.array.isRequired,
   onBookUpdate: PropTypes.func.isRequired
 };
 
