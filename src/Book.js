@@ -1,32 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import ShelfChanger from './ShelfChanger';
 
-const Book = ({ book, shelves, onBookUpdate }) => (
-  <li>
-    <div className="book">
-      <div className="book-top">
-        <div 
-          className="book-cover"
-          style={{
-            width: 128,
-            height: 193,
-            backgroundImage: `url(${book.imageLinks.thumbnail})`
-          }}
-        >
+const Book = ({ book, shelves, onBookUpdate }) => {
+  // add fallback value for missing cover
+  const bookCoverValue = 
+    book.imageLinks && book.imageLinks.thumbnail
+      ? `url(${book.imageLinks.thumbnail})`
+      : '#ccc';
+
+  return (
+    <li>
+      <div className="book">
+        <div className="book-top">
+          <div 
+            className="book-cover"
+            style={{
+              width: 128,
+              height: 193,
+              background: bookCoverValue
+            }}
+          >
+          </div>
+          <ShelfChanger 
+            book={book}
+            shelves={shelves}
+            onBookUpdate={onBookUpdate}
+          />
         </div>
-        <ShelfChanger 
-          book={book}
-          shelves={shelves}
-          onBookUpdate={onBookUpdate}
-        />
+        <div className="book-title">{book.title}</div>
+        <div className="book-authors">{book.authors}</div>
       </div>
-      <div className="book-title">{book.title}</div>
-      <div className="book-authors">{book.authors}</div>
-    </div>
-  </li>
-);
+    </li>
+  );
+};
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
