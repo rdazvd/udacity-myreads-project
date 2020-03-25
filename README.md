@@ -1,86 +1,70 @@
 # MyReads Project
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+A basic reading list app written purely in React, as part of the Udacity React Nanodegree Program.
+The purpose of this project is to validate basic knowledge of React app development fundamentals
+such as proper componentization, routing, conditional rendering, component state creation and management, among other concepts.
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
 
-## TL;DR
+## Setting up and running
 
-To get started developing right away:
+First things first, you will need a fairly updated version of Node.js (>= v6.x), which includes the Node Package Manager (npm).
+You can check if you have Node installed or up to date from your system terminal with
+`node --version`. Both Node and npm can be installed from a single download [here](https://nodejs.org/en/)).
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
+Once you have Node set up, follow the steps below:
 
-## What You're Getting
-```bash
-├── README.md - This file.
-├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with your app.
-├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
-├── public
-│   ├── favicon.ico # React Icon, You may change if you wish.
-│   └── index.html # DO NOT MODIFY
-└── src
-    ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── App.js # This is the root of your app. Contains static HTML right now.
-    ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
-    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
-    ├── icons # Helpful images for your app. Use at your discretion.
-    │   ├── add.svg
-    │   ├── arrow-back.svg
-    │   └── arrow-drop-down.svg
-    ├── index.css # Global styles. You probably won't need to change anything here.
-    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
+Using the terminal, navigate to the directory where you want to store the app and clone this repo
+
+```
+git clone https://github.com/rdazvd/udacity-myreads-project.git
+``` 
+
+Then, use npm to install all dependencies locally
+
+```
+npm install
 ```
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
+This will download and install all required dependencies.
+Once it is done, the app can be launched with
 
-## Backend Server
-
-To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
-
-* [`getAll`](#getall)
-* [`update`](#update)
-* [`search`](#search)
-
-### `getAll`
-
-Method Signature:
-
-```js
-getAll()
+```
+npm start
 ```
 
-* Returns a Promise which resolves to a JSON object containing a collection of book objects.
-* This collection represents the books currently in the bookshelves in your app.
+At the terminal, you should see a notification that it is running
 
-### `update`
+```
+Compiled successfully!
 
-Method Signature:
+The app is running at:
 
-```js
-update(book, shelf)
+  http://localhost:3000/
 ```
 
-* book: `<Object>` containing at minimum an `id` attribute
-* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
-* Returns a Promise which resolves to a JSON object containing the response data of the POST request
+You can now load the app by visiting localhost:3000(http://localhost:3000) in your Web browser.
+At any moment, you can stop running it by going to the terminal window where it is active and pressing `ctrl-c`.
 
-### `search`
+## Usage
 
-Method Signature:
+### Main Screen
+The main screen shows a list of books divided into three categories: Currently Reading, Want To Read and Read.
 
-```js
-search(query, maxResults)
+- To move a given book to a different category, click on the green button at the lower right-hand corner of that book and select a different category from the dropdown menu
+- To remove a book from the list, select "None" from the dropdown menu
+
+### Search Screen
+You can navigate to the search screen by clicking on the plus icon on the lower right corner of the main screen.
+
+- Type in a search term at the input at the top to trigger a search query and see the results below it.
+- To include a given book in the list, click on the green button at the lower right-hand corner of that book and select a category from the dropdown menu
+- To navigate back to the main screen, click on the back arrow icon on the top left-hand corner of the search screen
+
+Note that the backend API is limited to the following fixed set of search terms:
+
+```
+'Android', 'Art', 'Artificial Intelligence', 'Astronomy', 'Austen', 'Baseball', 'Basketball', 'Bhagat', 'Biography', 'Brief', 'Business', 'Camus', 'Cervantes', 'Christie', 'Classics', 'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai', 'Design', 'Development', 'Digital Marketing', 'Drama', 'Drawing', 'Dumas', 'Education', 'Everything', 'Fantasy', 'Film', 'Finance', 'First', 'Fitness', 'Football', 'Future', 'Games', 'Gandhi', 'History', 'History', 'Homer', 'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King', 'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make', 'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate', 'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production', 'Program Javascript', 'Programming', 'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 'Web Development', 'iOS'
 ```
 
-* query: `<String>`
-* maxResults: `<Integer>` Due to the nature of the backend server, search results are capped at 20, even if this is set higher.
-* Returns a Promise which resolves to a JSON object containing a collection of book objects.
-* These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
-
-## Important
-The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
-
-## Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+### Licensing
+This project is licensed under the terms of the MIT license.
