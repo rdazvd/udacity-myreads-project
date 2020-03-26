@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ShelfChanger from './ShelfChanger';
 
-const Book = ({ book, shelves, shelfNames, onBookUpdate }) => {
+const Book = ({ books, book, shelves, shelfNames, onBookUpdate }) => {
   // add fallback value for missing cover
   const bookCoverValue = 
     book.imageLinks && book.imageLinks.thumbnail
@@ -25,7 +25,8 @@ const Book = ({ book, shelves, shelfNames, onBookUpdate }) => {
             }}
           >
           </div>
-          <ShelfChanger 
+          <ShelfChanger
+            books={books}
             book={book}
             shelves={shelves}
             shelfNames={shelfNames}
