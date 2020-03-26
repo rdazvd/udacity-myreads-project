@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom';
 
 import BookList from './BookList';
 import SearchPage from './SearchPage';
+import NotFoundPage from './NotFoundPage';
 
 class BooksApp extends React.Component {
   state = {
@@ -81,6 +82,7 @@ class BooksApp extends React.Component {
             />
           ) } 
         />
+        <Route component={NotFoundPage} />
       </div>
     );
   }
