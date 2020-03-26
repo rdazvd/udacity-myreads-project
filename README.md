@@ -42,7 +42,7 @@ The app is running at:
   http://localhost:3000/
 ```
 
-You can now load the app by visiting localhost:3000(http://localhost:3000) in your Web browser.
+You can now load the app by visiting [localhost:3000](http://localhost:3000) in your Web browser.
 At any moment, you can stop running it by going to the terminal window where it is active and pressing `ctrl-c`.
 
 ## Usage
